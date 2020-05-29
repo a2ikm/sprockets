@@ -133,6 +133,7 @@ class TestTransformers < Sprockets::TestCase
       ['application/javascript+function', 0.8],
       ["application/eco+ruby", 0.8],
       ['application/javascript', 0.8],
+      ['application/javascript+ruby', 0.8],
     ], @env.expand_transform_accepts(@env.parse_q_values('text/coffeescript'))
     assert_equal [
       ['text/scss', 1.0],

@@ -109,6 +109,7 @@ module Sprockets
           ['application/javascript+function', 0.8],
           ["application/eco+ruby", 0.8],
           ["application/javascript", 0.8],
+          ["application/javascript+ruby", 0.8],
         ]
       elsif parsed_accepts.any? { |(type, q)| type == 'text/scss' }
         accepts += [
