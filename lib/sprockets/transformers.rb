@@ -107,6 +107,7 @@ module Sprockets
           ['text/eco', 0.8],
           ['text/ejs', 0.8],
           ['application/javascript+function', 0.8],
+          ["application/eco+ruby", 0.8],
         ]
       end
       accepts
