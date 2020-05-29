@@ -102,6 +102,13 @@ module Sprockets
           accepts.push([subtype, q * 0.8])
         end
       end
+      if parsed_accepts.any? { |(type, q)| type == 'text/coffeescript' }
+        accepts += [
+          ['text/eco', 0.8],
+          ['text/ejs', 0.8],
+          ['application/javascript+function', 0.8],
+        ]
+      end
       accepts
     end
 
