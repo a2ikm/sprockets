@@ -134,6 +134,11 @@ class TestTransformers < Sprockets::TestCase
       ["application/eco+ruby", 0.8],
       ['application/javascript', 0.8],
     ], @env.expand_transform_accepts(@env.parse_q_values('text/coffeescript'))
+    assert_equal [
+      ['text/scss', 1.0],
+      ["application/scss+ruby", 0.8],
+      ['text/css', 0.8],
+    ], @env.expand_transform_accepts(@env.parse_q_values('text/scss'))
     assert_equal [['image/png', 1.0], ['image/svg+xml', 0.8]],
       @env.expand_transform_accepts(@env.parse_q_values('image/png'))
   end
