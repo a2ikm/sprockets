@@ -125,6 +125,10 @@ class TestTransformers < Sprockets::TestCase
       ['text/x-handlebars-template', 0.8], # TODO: Extra step transform should be weighted down
       ['application/dart', 0.8]
     ], @env.expand_transform_accepts(@env.parse_q_values('application/javascript'))
+    assert_equal [
+      ['text/coffeescript', 1.0],
+      ['application/coffeescript+ruby', 0.8],
+    ], @env.expand_transform_accepts(@env.parse_q_values('text/coffeescript'))
     assert_equal [['image/png', 1.0], ['image/svg+xml', 0.8]],
       @env.expand_transform_accepts(@env.parse_q_values('image/png'))
   end
