@@ -326,7 +326,7 @@ module Sprockets
           environment.logger
         else
           logger = Logger.new($stderr)
-          logger.level = Logger::FATAL
+          logger.level = Logger::DEBUG
           logger
         end
       end
