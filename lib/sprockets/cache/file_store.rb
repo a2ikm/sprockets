@@ -20,12 +20,12 @@ module Sprockets
       # Internal: Default key limit for store.
       DEFAULT_MAX_SIZE = 25 * 1024 * 1024
 
-      # Internal: Default standard error fatal logger.
+      # Internal: Default standard error DEBUG logger.
       #
       # Returns a Logger.
       def self.default_logger
         logger = Logger.new($stderr)
-        logger.level = Logger::FATAL
+        logger.level = Logger::DEBUG
         logger
       end
 

@@ -48,7 +48,7 @@ module Sprockets
 
     def self.default_logger
       logger = Logger.new($stderr)
-      logger.level = Logger::FATAL
+      logger.level = Logger::DEBUG
       logger
     end
 

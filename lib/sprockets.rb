@@ -43,7 +43,7 @@ module Sprockets
 
   require 'logger'
   @logger = Logger.new($stderr)
-  @logger.level = Logger::FATAL
+  @logger.level = Logger::DEBUG
 
   # Common asset text types
   register_mime_type 'application/javascript', extensions: ['.js'], charset: :unicode
