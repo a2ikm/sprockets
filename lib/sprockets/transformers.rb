@@ -95,14 +95,29 @@ module Sprockets
     #
     # Returns an expanded Array of q values.
     def expand_transform_accepts(parsed_accepts)
-      accepts = []
-      parsed_accepts.each do |(type, q)|
-        accepts.push([type, q])
+      parsed_accepts = parsed_accepts.to_h
+
+      root_accepts = {}
+      parsed_accepts.each do |type, q|
+        mod_q = q * 0.8
+        root_type = find_root_accept(type)
+        root_accepts[root_type] = if type == root_type
+                                    q
+                                  elsif root_accepts.key?(root_type)
+                                    [mod_q, root_accepts[root_type]].max
+                                  else
+                                    mod_q
+                                  end
+      end
+
+      accepts = {}
+      root_accepts.each do |type, q|
+        accepts[type] = q
         config[:inverted_transformers][type].each do |subtype|
-          accepts.push([subtype, q * 0.8])
+          accepts[subtype] = parsed_accepts[subtype] || q
         end
       end
-      accepts
+      accepts.sort_by { |(type, q)| -q }
     end
 
     # Internal: Compose multiple transformer steps into a single processor
@@ -168,6 +183,12 @@ module Sprockets
 
         self.config = hash_reassoc(config, :transformers) { transformers }
         self.config = hash_reassoc(config, :inverted_transformers) { inverted_transformers }
+      end
+
+      def find_root_accept(type)
+        config[:transformers][type].keys.find do |dst|
+          !config[:transformers].key?(dst) &&  config[:transformers][dst].empty?
+        end || type
       end
   end
 end
