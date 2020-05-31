@@ -22,13 +22,13 @@ module Sprockets
       DEFAULT_MAX_SIZE = 25 * 1024 * 1024
       EXCLUDED_DIRS = ['.', '..'].freeze
       GITKEEP_FILES = ['.gitkeep', '.keep'].freeze
-      
-      # Internal: Default standard error fatal logger.
+
+      # Internal: Default standard error DEBUG logger.
       #
       # Returns a Logger.
       def self.default_logger
         logger = Logger.new($stderr)
-        logger.level = Logger::FATAL
+        logger.level = Logger::DEBUG
         logger
       end
 
@@ -38,7 +38,7 @@ module Sprockets
       # max_size - A Integer of the maximum size the store will hold (in bytes).
       #            (default: 25MB).
       # logger   - The logger to which some info will be printed.
-      #            (default logger level is FATAL and won't output anything).
+      #            (default logger level is DEBUG and won't output anything).
       def initialize(root, max_size = DEFAULT_MAX_SIZE, logger = self.class.default_logger)
         @root     = root
         @max_size = max_size
